@@ -25,7 +25,7 @@ class TodayHistorySkill(MycroftSkill):
         self.speak_dialog('today')
         time.sleep(0.3)
 
-        self.speak_dialog('event', data={'event': type(message.data.get('utterance')})
+        self.speak_dialog('event', data={'event': type(message.data.get('utterance'))})
 
         #if "all" in message.data.get('utterance').split():
         #    for obj in self.getEvents():
