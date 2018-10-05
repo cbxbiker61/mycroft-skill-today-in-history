@@ -28,11 +28,11 @@ class TodayHistorySkill(MycroftSkill):
 
         #if "all" in message.data.get('utterance').split():
         #    for obj in self.getEvents():
-        #        self.speak(obj)
+        #        self.speakEntry(obj)
         #else:
-        #    self.speak(random.choice(self.getEvents()))
+        #    self.speakEntry(random.choice(self.getEvents()))
 
-    def speak(self, obj):
+    def speakEntry(self, obj):
         play_wav(os.path.join(os.path.abspath(os.path.dirname(__file__, 'sounds', 'oneBeep.wav'))))
         time.sleep(0.3)
         s = "In " + obj['year'] + ", " + obj['text']
