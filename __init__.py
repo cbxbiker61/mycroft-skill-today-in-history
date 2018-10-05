@@ -35,7 +35,7 @@ class TodayHistorySkill(MycroftSkill):
         play_wav(os.path.join(os.path.abspath(os.path.dirname(__file__, 'sounds', 'oneBeep.wav'))))
         time.sleep(0.3)
         s = "In " + obj['year'] + ", " + obj['text']
-        self.speak_dialog('event', data{'event': s})
+        self.speak_dialog('event', data={'event': s})
 
     def getEvents(self):
         url = 'http://history.muffinlabs.com/date'
