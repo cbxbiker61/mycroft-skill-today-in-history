@@ -20,14 +20,13 @@ class TodayHistorySkill(MycroftSkill):
     def initialize(self):
         self.load_data_files(dirname(__file__))
 
-        random_event_intent = IntentBuilder("RandomEventIntent").\
-            require("RandomEventKeyword").build()
+        random_event_intent = IntentBuilder("RandomEventIntent").require("RandomEventKeyword").build()
         self.register_intent(random_event_intent, self.handle_random_event_intent)
 
     def handle_random_event_intent(self, message):
-        self.speak(message.data.get('utterance')):
-        return
-        self.speak_dialog('today')
+        print(message, file=open("/tmp/event-message.txt"))
+        self.speak(message.data.get('utterance'))
+        #self.speak_dialog('today')
         self.speakEvent(random.choice(self.getEvents()))
 
         #if "all" in message.data.get('utterance').split():
