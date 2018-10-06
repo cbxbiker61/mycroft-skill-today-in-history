@@ -26,7 +26,7 @@ class TodayHistorySkill(MycroftSkill):
 
     def handle_random_event_intent(self, message):
         self.speak_dialog('today')
-        time.sleep(0.3)
+        self.speak(type(message.data.get('utterance'))):
         self.speakEvent(random.choice(self.getEvents()))
 
         #if "all" in message.data.get('utterance').split():
