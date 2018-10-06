@@ -15,7 +15,7 @@ class TodayHistorySkill(MycroftSkill):
 
     def __init__(self):
         super(TodayHistorySkill, self).__init__(name="TodayHistorySkill")
-        self.beepWav = os.path.join(os.path.abspath(os.path.dirname(__file__), 'sounds', 'oneBeep.wav'))
+        self.beepWav = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'sounds', 'oneBeep.wav')
 
     def initialize(self):
         self.load_data_files(dirname(__file__))
