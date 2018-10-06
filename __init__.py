@@ -42,7 +42,7 @@ class TodayHistorySkill(MycroftSkill):
 
     def getEvents(self):
         url = 'http://history.muffinlabs.com/date'
-        cacheFile = "/tmp/TodayInHistoryEvents.cache"
+        cacheFile = "/var/tmp/TodayInHistoryEvents.cache"
         cacheSeconds = (60*60*2) # 2 hours
 
         if not os.path.exists(cacheFile) or (os.path.getmtime(cacheFile) < time.time() - cacheSeconds):
