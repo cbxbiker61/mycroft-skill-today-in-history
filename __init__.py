@@ -11,9 +11,11 @@ LOGGER = getLogger(__name__)
 
 class TodayHistorySkill(MycroftSkill):
 
+    beepWav = None
+
     def __init__(self):
         super(TodayHistorySkill, self).__init__(name="TodayHistorySkill")
-        self.beep = os.path.join(os.path.abspath(os.path.dirname(__file__, 'sounds', 'oneBeep.wav')))
+        self.beepWav = os.path.join(os.path.abspath(os.path.dirname(__file__, 'sounds', 'oneBeep.wav')))
 
     def initialize(self):
         self.load_data_files(dirname(__file__))
@@ -34,7 +36,7 @@ class TodayHistorySkill(MycroftSkill):
         #    self.speakEntry(random.choice(self.getEvents()))
 
     def speakEntry(self, obj):
-        play_wav(self.beep)
+        play_wav(self.beepWav)
         time.sleep(0.3)
         self.speak("In " + obj['year'] + ", " + obj['text'])
 
