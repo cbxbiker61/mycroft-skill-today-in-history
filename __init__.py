@@ -24,6 +24,7 @@ class TodayHistorySkill(MycroftSkill):
         self.register_intent(random_event_intent, self.handle_random_event_intent)
 
     def handle_random_event_intent(self, message):
+        play_wav(self.beepWav)
         self.speak_dialog('today')
 
         if "all" in message.data.get('utterance').split():
@@ -33,8 +34,6 @@ class TodayHistorySkill(MycroftSkill):
             self.speakEvent(random.choice(self.getEvents()))
 
     def speakEvent(self, obj):
-        play_wav(self.beepWav)
-        time.sleep(0.3)
         self.speak("In " + obj['year'] + ", " + obj['text'])
 
     def getEvents(self):
