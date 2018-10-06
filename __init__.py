@@ -15,7 +15,7 @@ class TodayHistorySkill(MycroftSkill):
 
     def __init__(self):
         super(TodayHistorySkill, self).__init__(name="TodayHistorySkill")
-        self.beepWav = os.path.join(os.path.abspath(os.path.dirname(__file__, 'sounds', 'oneBeep.wav')))
+        self.beepWav = os.path.join(os.path.abspath(os.path.dirname(__file__), 'sounds', 'oneBeep.wav'))
 
     def initialize(self):
         self.load_data_files(dirname(__file__))
@@ -25,17 +25,17 @@ class TodayHistorySkill(MycroftSkill):
         self.register_intent(random_event_intent, self.handle_random_event_intent)
 
     def handle_random_event_intent(self, message):
-        #self.speak_dialog('today')
-        #time.sleep(0.3)
-        self.speakEntry(random.choice(self.getEvents()))
+        self.speak_dialog('today')
+        time.sleep(0.3)
+        self.speakEvent(random.choice(self.getEvents()))
 
         #if "all" in message.data.get('utterance').split():
         #    for obj in self.getEvents():
-        #        self.speakEntry(obj)
+        #        self.speakEvent(obj)
         #else:
-        #    self.speakEntry(random.choice(self.getEvents()))
+        #    self.speakEvent(random.choice(self.getEvents()))
 
-    def speakEntry(self, obj):
+    def speakEvent(self, obj):
         play_wav(self.beepWav)
         time.sleep(0.3)
         self.speak("In " + obj['year'] + ", " + obj['text'])
