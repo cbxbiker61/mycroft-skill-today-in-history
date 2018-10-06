@@ -24,7 +24,7 @@ class TodayHistorySkill(MycroftSkill):
         self.register_intent(random_event_intent, self.handle_random_event_intent)
 
     def handle_random_event_intent(self, message):
-        print(message, file=open("/tmp/event-message.txt"))
+        print(message, file=open("/tmp/event-message.txt", "w"))
         self.speak(message.data.get('utterance'))
         #self.speak_dialog('today')
         self.speakEvent(random.choice(self.getEvents()))
