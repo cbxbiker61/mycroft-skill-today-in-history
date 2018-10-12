@@ -12,6 +12,7 @@ LOGGER = getLogger(__name__)
 class TodayHistorySkill(MycroftSkill):
 
     beepWav = None
+    lastEvent = None
 
     def __init__(self):
         super(TodayHistorySkill, self).__init__(name="TodayHistorySkill")
@@ -24,14 +25,18 @@ class TodayHistorySkill(MycroftSkill):
         self.register_intent(random_event_intent, self.handle_random_event_intent)
 
     def handle_random_event_intent(self, message):
-        play_wav(self.beepWav)
+        #play_wav(self.beepWav)
         self.speak_dialog('today')
+        words = message.data.get('utterance').split()
 
-        if "all" in message.data.get('utterance').split():
-            for obj in self.getEvents():
-                self.speakEvent(obj)
+        if "all" in words:
+            for self.lastEvent in self.getEvents():
+                self.speakEvent(self.lastEvent)
+        elif "repeat" in words and self.lastEvent is not None:
+            self.speakEvent(self.lastEvent)
         else:
-            self.speakEvent(random.choice(self.getEvents()))
+            self.lastEvent = random.choice(self.getEvents())
+            self.speakEvent(self.lastEvent)
 
     def speakEvent(self, obj):
         self.speak("In " + obj['year'] + ", " + obj['text'])
